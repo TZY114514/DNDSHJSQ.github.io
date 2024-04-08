@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>D&D 伤害计算器</title>
+</head>
+<body>
+    <h2>D&D 伤害期望计算器</h2>
+    <p>输入骰子公式如： (e.g., "3d10+19d10+36d8"):</p>
+    <input type="text" id="diceExpression" placeholder="3d10+19d10+36d8">
+    <button onclick="calculateDamage()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateDamage() {
+            var expression = document.getElementById('diceExpression').value;
+            var parts = expression.split('+');
+            var totalExpectation = 0;
+            for (var i = 0; i < parts.length; i++) {
+                var part = parts[i].split('d');
+                var numDice = parseInt(part[0], 10);
+                var diceSides = parseInt(part[1], 10);
+                var expectation = numDice * (diceSides + 1) / 2;
+                totalExpectation += expectation;
+            }
+            document.getElementById('result').innerHTML = "Expected Damage: " + totalExpectation;
+        }
+    </script>
+</body>
+</html>
+
+
+#自动侏儒会跑ai团吗？出品。有任何问题并不负责（确信）
